@@ -74,6 +74,7 @@ class Home extends Component {
               onChange={ this.sendingInput }
               className="category-input"
               id="category-input"
+              placeholder="procurar"
             />
           </label>
           <div
