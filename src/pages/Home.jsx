@@ -44,35 +44,44 @@ class Home extends Component {
     const { category, valueInput, products } = this.state;
     return (
       <>
-        <div data-testid="home-initial-message">
+        <div className="selection-category">
           {
             category.map((element) => (
               <label
-                htmlFor="a"
+                htmlFor={ element.id }
+                className="category-radio-label"
                 key={ element.id }
               >
                 <input
+                  className="category-radio"
                   data-testid="category"
                   type="radio"
                   onClick={ this.setCategory }
                   id={ element.id }
                 />
-
                 {element.name}
-
               </label>
             ))
           }
-          <label htmlFor="a">
+        </div>
+        <div>
+          <label htmlFor="category-input">
             <input
               name="product"
               data-testid="query-input"
               type="text"
               value={ valueInput }
               onChange={ this.sendingInput }
+              className="category-input"
+              id="category-input"
             />
           </label>
-          Digite algum termo de pesquisa ou escolha uma categoria.
+          <div
+            data-testid="home-initial-message"
+            className="home-initial-message"
+          >
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </div>
         </div>
         <button
           data-testid="query-button"
@@ -82,7 +91,11 @@ class Home extends Component {
           Pesquisar
         </button>
         <Link data-testid="shopping-cart-button" to="/cart">
-          <img src={ CartImage } alt="Carrinho de Compras" className="Cart-Icon" />
+          <img
+            src={ CartImage }
+            alt="Carrinho de Compras"
+            className="cart-Icon"
+          />
         </Link>
         <section>
           { products.length !== 0

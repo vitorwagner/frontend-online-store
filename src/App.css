@@ -1,4 +1,43 @@
-.Cart-Icon {
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.cart-Icon {
+  display: inline;
+  height: 40px;
+  width: 40px;
+}
+
+.selection-category {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.category-radio-label {
+  margin: 3px;
+}
+
+.category-radio {
+  margin-right: 10px;
+}
+
+.category-input {
+  border: solid 1px grey;
+  border-radius: 10px;
   height: 30px;
-  width: 30px;
+  padding: 10px;
+  width: 100%;
+}
+
+.home-initial-message {
+  margin-top: 10px;
 }
