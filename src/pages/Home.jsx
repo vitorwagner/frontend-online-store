@@ -9,6 +9,7 @@ class Home extends Component {
     category: [],
     valueInput: '',
     products: [],
+    cart: [],
   };
 
   async componentDidMount() {
@@ -38,6 +39,20 @@ class Home extends Component {
     const { results } = response;
     this.setState({ products: results });
     console.log(results);
+  };
+
+  handleClick = (cartTitle, cartThumbnail, cartPrice) => {
+    const cartObject = {
+      title: cartTitle,
+      thumbnail: cartThumbnail,
+      price: cartPrice,
+    };
+    this.setState((prevState) => ({
+      cart: [...prevState.cart, cartObject],
+    }), () => {
+      const { cart } = this.state;
+      localStorage.setItem('cart', JSON.stringify(cart));
+    });
   };
 
   render() {
@@ -106,6 +121,7 @@ class Home extends Component {
                 title={ element.title }
                 price={ element.price }
                 thumbnail={ element.thumbnail }
+                handleClick={ this.handleClick }
               />
             ))
             : <p>Nenhum produto foi encontrado</p>}
