@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import CartImage from '../images/shopping-cart.png';
 
 class Home extends Component {
   state = {
     category: [],
+    products: [],
   };
 
   async componentDidMount() {
@@ -14,6 +15,15 @@ class Home extends Component {
       category: test,
     });
   }
+
+  setCategory = async ({ target }) => {
+    const { id } = target;
+    const response = await getProductsFromCategoryAndQuery(id);
+    const { results } = response;
+    this.setState({
+      products: results,
+    });
+  };
 
   render() {
     const { category } = this.state;
@@ -29,6 +39,8 @@ class Home extends Component {
                 <input
                   data-testid="category"
                   type="radio"
+                  onClick={ this.setCategory }
+                  id={ element.id }
                 />
 
                 {element.name}
