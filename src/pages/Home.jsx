@@ -64,7 +64,7 @@ class Home extends Component {
             ))
           }
         </div>
-        <div>
+        <div className="nav-bar">
           <label htmlFor="category-input">
             <input
               name="product"
