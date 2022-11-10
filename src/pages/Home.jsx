@@ -18,6 +18,15 @@ class Home extends Component {
     });
   }
 
+  setCategory = async ({ target }) => {
+    const { id } = target;
+    const response = await getProductsFromCategoryAndQuery(id);
+    const { results } = response;
+    this.setState({
+      products: results,
+    });
+  };
+
   sendingInput = ({ target }) => {
     const { value } = target;
     this.setState({ valueInput: value });
@@ -45,6 +54,8 @@ class Home extends Component {
                 <input
                   data-testid="category"
                   type="radio"
+                  onClick={ this.setCategory }
+                  id={ element.id }
                 />
 
                 {element.name}
