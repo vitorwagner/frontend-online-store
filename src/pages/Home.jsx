@@ -106,6 +106,7 @@ class Home extends Component {
                 title={ element.title }
                 price={ element.price }
                 thumbnail={ element.thumbnail }
+                id={ element.id }
               />
             ))
             : <p>Nenhum produto foi encontrado</p>}
