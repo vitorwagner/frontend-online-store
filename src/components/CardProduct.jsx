@@ -15,13 +15,13 @@ class CardProduct extends Component {
           </div>
         </Link>
         <button
-           type="button"
-           data-testid="product-add-to-cart"
-           onClick={ () => handleClick(title, thumbnail, price) }
-         >
+            type="button"
+            data-testid="product-add-to-cart"
+            onClick={ () => handleClick(title, thumbnail, price) }
+          >
            Adicionar ao carrinho
-         </button>
-       </div> 
+          </button>
+        </div>
     );
   }
 }
