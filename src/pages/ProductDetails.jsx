@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getProduct } from '../services/api';
 import CartImage from '../images/shopping-cart.png';
+import { ProductReview } from '../components/ProductReview';
 
 export default class ProductDetails extends Component {
   state = {
@@ -76,6 +77,9 @@ export default class ProductDetails extends Component {
             Adicionar ao carrinho
           </button>
         </div>
+        <ProductReview 
+          id={ product.id }
+        />
       </div>
     );
   }
