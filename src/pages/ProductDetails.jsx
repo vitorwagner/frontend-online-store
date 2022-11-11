@@ -77,7 +77,7 @@ export default class ProductDetails extends Component {
             Adicionar ao carrinho
           </button>
         </div>
-        <ProductReview 
+        <ProductReview
           id={ product.id }
         />
       </div>

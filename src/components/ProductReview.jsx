@@ -77,6 +77,7 @@ export class ProductReview extends Component {
       isInvalid,
     } = this.state;
     const reviews = JSON.parse(localStorage.getItem(id));
+
     return (
       <>
         <form>
