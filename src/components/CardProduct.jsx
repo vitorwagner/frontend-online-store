@@ -18,7 +18,7 @@ class CardProduct extends Component {
           type="button"
           data-testid="product-add-to-cart"
           onClick={ () => handleClick(title, thumbnail, price) }
-        >
+       >
            Adicionar ao carrinho
         </button>
       </div>
@@ -31,7 +31,7 @@ CardProduct.propTypes = {
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
+ // handleClick: PropTypes.func.isRequired,
 };
 
 export default CardProduct;
