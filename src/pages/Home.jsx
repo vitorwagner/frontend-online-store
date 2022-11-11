@@ -121,6 +121,7 @@ class Home extends Component {
                 title={ element.title }
                 price={ element.price }
                 thumbnail={ element.thumbnail }
+                id={ element.id }
                 handleClick={ this.handleClick }
               />
             ))
