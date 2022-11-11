@@ -6,7 +6,7 @@ class Cart extends Component {
 
     return (
       <div>
-        {cart.length !== 0
+        {(cart !== null && cart.length !== 0)
           ? cart.map((element) => (
             <div key={ element.title }>
               <p data-testid="shopping-cart-product-name">{element.title}</p>
