@@ -17,6 +17,9 @@ class Home extends Component {
     this.setState({
       category: test,
     });
+    if (!JSON.parse(localStorage.getItem('cart'))) {
+      localStorage.setItem('cart', JSON.stringify([]));
+    }
   }
 
   setCategory = async ({ target }) => {
@@ -38,7 +41,6 @@ class Home extends Component {
     const response = await getProductsFromCategoryAndQuery('', valueInput);
     const { results } = response;
     this.setState({ products: results });
-    console.log(results);
   };
 
   handleClick = (cartTitle, cartThumbnail, cartPrice) => {

@@ -17,8 +17,24 @@ export default class ProductDetails extends Component {
     });
   }
 
+  handleClick = (cartTitle, cartThumbnail, cartPrice) => {
+    const carts = JSON.parse(localStorage.getItem('cart'));
+
+    const cartObject = {
+      title: cartTitle,
+      thumbnail: cartThumbnail,
+      price: cartPrice,
+    };
+    this.setState(({ cart: [...carts, cartObject],
+    }), () => {
+      const { cart } = this.state;
+      localStorage.setItem('cart', JSON.stringify(cart));
+    });
+  };
+
   render() {
     const { product } = this.state;
+
     return (
       <div>
         <Link data-testid="shopping-cart-button" to="/cart">
@@ -51,6 +67,14 @@ export default class ProductDetails extends Component {
               <li>{ product.condition }</li>
             </ul>
           </div>
+          <button
+            type="button"
+            data-testid="product-detail-add-to-cart"
+            onClick={ () => (
+              this.handleClick(product.title, product.thumbnail, product.price)) }
+          >
+            Adicionar ao carrinho
+          </button>
         </div>
       </div>
     );
