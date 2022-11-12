@@ -22,8 +22,8 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding: 10px;
   min-width: 15rem;
+  padding: 10px;
 }
 
 .category-radio-label {
@@ -47,11 +47,11 @@
 }
 
 .card-product {
+  border: 1px solid black;
   display: flex;
   flex-direction: column;
-  padding: 2rem;
   margin: 2rem;
-  border: 1px solid black
+  padding: 2rem;
 }
 
 .product-title {
@@ -70,6 +70,6 @@
 }
 
 a {
+  color: black;
   text-decoration: none;
-  color: black
 }
