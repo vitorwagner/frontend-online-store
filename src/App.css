@@ -50,6 +50,7 @@
   flex-direction: column;
   padding: 2rem;
   margin: 2rem;
+  border: 1px solid black
 }
 
 .product-title {
@@ -65,4 +66,9 @@
 .product-details img {
   height: 12rem;
   object-fit: contain;
+}
+
+a {
+  text-decoration: none;
+  color: black
 }
