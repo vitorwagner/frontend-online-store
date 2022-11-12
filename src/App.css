@@ -44,3 +44,25 @@
 .home-initial-message {
   margin-top: 10px;
 }
+
+.card-product {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  margin: 2rem;
+}
+
+.product-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-details img {
+  height: 12rem;
+  object-fit: contain;
+}
