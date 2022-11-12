@@ -71,6 +71,7 @@ class Home extends Component {
               >
                 <input
                   className="category-radio"
+                  name="category"
                   data-testid="category"
                   type="radio"
                   onClick={ this.setCategory }
@@ -94,20 +95,39 @@ class Home extends Component {
               placeholder="procurar"
             />
           </label>
+          <span>
+            <button
+              data-testid="query-button"
+              type="button"
+              onClick={ this.sendingButton }
+            >
+              Pesquisar
+            </button>
+          </span>
           <div
             data-testid="home-initial-message"
             className="home-initial-message"
           >
             Digite algum termo de pesquisa ou escolha uma categoria.
           </div>
+          <section>
+            { products.length !== 0
+              ? products.map((element) => (
+                <CardProduct
+                  key={ element.id }
+                  title={ element.title }
+                  price={ element.price }
+                  thumbnail={ element.thumbnail }
+                  id={ element.id }
+                  handleClick={ this.handleClick }
+                />
+              ))
+              : <p>Nenhum produto foi encontrado</p>}
+
+          </section>
+
         </div>
-        <button
-          data-testid="query-button"
-          type="button"
-          onClick={ this.sendingButton }
-        >
-          Pesquisar
-        </button>
+
         <Link data-testid="shopping-cart-button" to="/cart">
           <img
             src={ CartImage }
@@ -115,21 +135,7 @@ class Home extends Component {
             className="cart-Icon"
           />
         </Link>
-        <section>
-          { products.length !== 0
-            ? products.map((element) => (
-              <CardProduct
-                key={ element.id }
-                title={ element.title }
-                price={ element.price }
-                thumbnail={ element.thumbnail }
-                id={ element.id }
-                handleClick={ this.handleClick }
-              />
-            ))
-            : <p>Nenhum produto foi encontrado</p>}
 
-        </section>
       </>
 
     );
