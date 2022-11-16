@@ -24,6 +24,7 @@ export default class ProductDetails extends Component {
       title: cartTitle,
       thumbnail: cartThumbnail,
       price: cartPrice,
+      quantity: 1,
     };
     this.setState(({ cart: [...carts, cartObject],
     }), () => {

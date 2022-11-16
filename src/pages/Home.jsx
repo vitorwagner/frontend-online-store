@@ -43,11 +43,13 @@ class Home extends Component {
     this.setState({ products: results });
   };
 
-  handleClick = (cartTitle, cartThumbnail, cartPrice) => {
+  handleClick = (cartTitle, cartThumbnail, cartPrice, productId) => {
     const cartObject = {
       title: cartTitle,
       thumbnail: cartThumbnail,
       price: cartPrice,
+      id: productId,
+      quantity: 1,
     };
     this.setState((prevState) => ({
       cart: [...prevState.cart, cartObject],
