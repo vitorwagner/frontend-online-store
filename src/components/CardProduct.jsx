@@ -21,7 +21,7 @@ class CardProduct extends Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
-          onClick={ () => handleClick(title, thumbnail, price) }
+          onClick={ () => handleClick(title, thumbnail, price, id) }
         >
           Adicionar ao carrinho
         </button>
