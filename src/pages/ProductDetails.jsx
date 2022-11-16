@@ -18,13 +18,14 @@ export default class ProductDetails extends Component {
     });
   }
 
-  handleClick = (cartTitle, cartThumbnail, cartPrice) => {
+  handleClick = (cartTitle, cartThumbnail, cartPrice, productId) => {
     const carts = JSON.parse(localStorage.getItem('cart'));
 
     const cartObject = {
       title: cartTitle,
       thumbnail: cartThumbnail,
       price: cartPrice,
+      idProduct: productId,
       quantity: 1,
     };
     this.setState(({ cart: [...carts, cartObject],
