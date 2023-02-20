@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import CartImage from '../images/shopping-cart.png';
 import CardProduct from '../components/CardProduct';
+import cartQuantityDisplay from '../utils/cartQuantityDisplay';
 
 class Home extends Component {
   state = {
@@ -67,7 +68,11 @@ class Home extends Component {
         }
         return element;
       });
-      localStorage.setItem('cart', JSON.stringify(newCart));
+      this.setState(
+        { cart: newCart },
+        () => localStorage.setItem('cart', JSON.stringify(newCart)),
+      );
+
       return;
     }
     this.setState((prevState) => ({
@@ -157,7 +162,7 @@ class Home extends Component {
             alt="Carrinho de Compras"
             className="cart-Icon"
           />
-          <div data-testid="shopping-cart-size">{cart.length}</div>
+          <div data-testid="shopping-cart-size">{cartQuantityDisplay(cart)}</div>
         </Link>
 
       </>

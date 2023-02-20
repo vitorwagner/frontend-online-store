@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getProduct } from '../services/api';
 import CartImage from '../images/shopping-cart.png';
 import { ProductReview } from '../components/ProductReview';
+import cartQuantityDisplay from '../utils/cartQuantityDisplay';
 
 export default class ProductDetails extends Component {
   state = {
@@ -53,7 +54,7 @@ export default class ProductDetails extends Component {
   };
 
   render() {
-    const { product, cart = [] } = this.state;
+    const { product, cart } = this.state;
 
     return (
       <div>
@@ -63,7 +64,7 @@ export default class ProductDetails extends Component {
             alt="Carrinho de Compras"
             className="cart-Icon"
           />
-          <div data-testid="shopping-cart-size">{cart.length}</div>
+          <div data-testid="shopping-cart-size">{cartQuantityDisplay(cart)}</div>
         </Link>
         <div>
           <p data-testid="product-detail-name">
