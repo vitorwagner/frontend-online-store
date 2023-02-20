@@ -20,6 +20,10 @@ class Home extends Component {
     if (!JSON.parse(localStorage.getItem('cart'))) {
       localStorage.setItem('cart', JSON.stringify([]));
     }
+    const carts = JSON.parse(localStorage.getItem('cart'));
+    this.setState({
+      cart: carts,
+    });
   }
 
   setCategory = async ({ target }) => {
@@ -60,7 +64,7 @@ class Home extends Component {
   };
 
   render() {
-    const { category, valueInput, products } = this.state;
+    const { category, valueInput, products, cart } = this.state;
     return (
       <>
         <div className="selection-category">
@@ -136,6 +140,7 @@ class Home extends Component {
             alt="Carrinho de Compras"
             className="cart-Icon"
           />
+          <div data-testid="shopping-cart-size">{cart.length}</div>
         </Link>
 
       </>

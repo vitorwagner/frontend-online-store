@@ -8,13 +8,16 @@ import { ProductReview } from '../components/ProductReview';
 export default class ProductDetails extends Component {
   state = {
     product: {},
+    cart: [],
   };
 
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
+    const carts = JSON.parse(localStorage.getItem('cart'));
     const response = await getProduct(id);
     this.setState({
       product: response,
+      cart: carts,
     });
   }
 
@@ -36,7 +39,7 @@ export default class ProductDetails extends Component {
   };
 
   render() {
-    const { product } = this.state;
+    const { product, cart } = this.state;
 
     return (
       <div>
@@ -46,6 +49,7 @@ export default class ProductDetails extends Component {
             alt="Carrinho de Compras"
             className="cart-Icon"
           />
+          <div data-testid="shopping-cart-size">{cart.length}</div>
         </Link>
         <div>
           <p data-testid="product-detail-name">
