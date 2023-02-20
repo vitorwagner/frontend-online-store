@@ -47,14 +47,29 @@ class Home extends Component {
     this.setState({ products: results });
   };
 
-  handleClick = (cartTitle, cartThumbnail, cartPrice, productId) => {
+  handleClick = ({ title, thumbnail, price, id, availableQuantity }) => {
     const cartObject = {
-      title: cartTitle,
-      thumbnail: cartThumbnail,
-      price: cartPrice,
-      id: productId,
+      title,
+      thumbnail,
+      price,
+      id,
+      availableQuantity,
       quantity: 1,
     };
+    const cartStorage = JSON.parse(localStorage.getItem('cart'));
+    if (cartStorage.some((element) => element.id === id)) {
+      const newCart = cartStorage.map((element) => {
+        if (element.id === id) {
+          return {
+            ...element,
+            quantity: element.quantity + 1,
+          };
+        }
+        return element;
+      });
+      localStorage.setItem('cart', JSON.stringify(newCart));
+      return;
+    }
     this.setState((prevState) => ({
       cart: [...prevState.cart, cartObject],
     }), () => {
@@ -126,6 +141,7 @@ class Home extends Component {
                   thumbnail={ element.thumbnail }
                   id={ element.id }
                   handleClick={ this.handleClick }
+                  availableQuantity={ element.available_quantity }
                   freeShipping={ element.shipping.free_shipping }
                 />
               ))

@@ -13,7 +13,7 @@ export default class ProductDetails extends Component {
 
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
-    const carts = JSON.parse(localStorage.getItem('cart'));
+    const carts = JSON.parse(localStorage.getItem('cart')) || [];
     const response = await getProduct(id);
     this.setState({
       product: response,
@@ -21,17 +21,31 @@ export default class ProductDetails extends Component {
     });
   }
 
-  handleClick = (cartTitle, cartThumbnail, cartPrice, productId) => {
-    const carts = JSON.parse(localStorage.getItem('cart'));
-
+  handleClick = ({ title, thumbnail, price, id, availableQuantity }) => {
     const cartObject = {
-      title: cartTitle,
-      thumbnail: cartThumbnail,
-      price: cartPrice,
-      id: productId,
+      title,
+      thumbnail,
+      price,
+      id,
+      availableQuantity,
       quantity: 1,
     };
-    this.setState(({ cart: [...carts, cartObject],
+    const cartStorage = JSON.parse(localStorage.getItem('cart'));
+    if (cartStorage.some((element) => element.id === id)) {
+      const newCart = cartStorage.map((element) => {
+        if (element.id === id) {
+          return {
+            ...element,
+            quantity: element.quantity + 1,
+          };
+        }
+        return element;
+      });
+      localStorage.setItem('cart', JSON.stringify(newCart));
+      return;
+    }
+    this.setState((prevState) => ({
+      cart: [...prevState.cart, cartObject],
     }), () => {
       const { cart } = this.state;
       localStorage.setItem('cart', JSON.stringify(cart));
@@ -39,7 +53,7 @@ export default class ProductDetails extends Component {
   };
 
   render() {
-    const { product, cart } = this.state;
+    const { product, cart = [] } = this.state;
 
     return (
       <div>
@@ -78,12 +92,14 @@ export default class ProductDetails extends Component {
             type="button"
             data-testid="product-detail-add-to-cart"
             onClick={ () => (
-              this.handleClick(
-                product.title,
-                product.thumbnail,
-                product.price,
-                product.id,
-              )) }
+              this.handleClick({
+                title: product.title,
+                thumbnail: product.thumbnail,
+                price: product.price,
+                id: product.id,
+                availableQuantity: product.available_quantity,
+              })) }
+
           >
             Adicionar ao carrinho
           </button>

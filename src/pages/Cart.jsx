@@ -42,6 +42,12 @@ class Cart extends Component {
     });
   };
 
+  cartQuantityCheck = (productId) => {
+    const cartStorage = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartQuantity = cartStorage.filter((element) => element.id === productId);
+    return cartQuantity.length > 0 ? cartQuantity[0].quantity : 0;
+  };
+
   render() {
     const { localS } = this.state;
 
@@ -59,6 +65,9 @@ class Cart extends Component {
                 id={ element.id }
                 data-testid="product-increase-quantity"
                 onClick={ this.changeMore }
+                disabled={ localS.some((item) => item.id === element.id)
+                  ? element.availableQuantity
+                  === this.cartQuantityCheck(element.id) : false }
               >
                 +
               </button>
