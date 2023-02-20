@@ -126,6 +126,7 @@ class Home extends Component {
                   thumbnail={ element.thumbnail }
                   id={ element.id }
                   handleClick={ this.handleClick }
+                  freeShipping={ element.shipping.free_shipping }
                 />
               ))
               : <p>Nenhum produto foi encontrado</p>}
