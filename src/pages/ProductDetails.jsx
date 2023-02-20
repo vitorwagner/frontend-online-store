@@ -28,7 +28,7 @@ export default class ProductDetails extends Component {
       title: cartTitle,
       thumbnail: cartThumbnail,
       price: cartPrice,
-      idProduct: productId,
+      id: productId,
       quantity: 1,
     };
     this.setState(({ cart: [...carts, cartObject],
@@ -78,7 +78,12 @@ export default class ProductDetails extends Component {
             type="button"
             data-testid="product-detail-add-to-cart"
             onClick={ () => (
-              this.handleClick(product.title, product.thumbnail, product.price)) }
+              this.handleClick(
+                product.title,
+                product.thumbnail,
+                product.price,
+                product.id,
+              )) }
           >
             Adicionar ao carrinho
           </button>

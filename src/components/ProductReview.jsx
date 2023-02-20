@@ -141,7 +141,11 @@ export class ProductReview extends Component {
 }
 
 ProductReview.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
+};
+
+ProductReview.defaultProps = {
+  id: '',
 };
 
 export default ProductReview;
